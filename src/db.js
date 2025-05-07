@@ -2,7 +2,7 @@ import pkg from 'pg';
 const { Pool } = pkg;
 import dotenv from 'dotenv';
 
-// Load environment variables from .env file
+
 dotenv.config();
 
 const config = {
@@ -13,7 +13,7 @@ const config = {
   port: process.env.DB_PORT,
 };
 
-// Validate configuration
+
 if (!config.password) {
   throw new Error('DB_PASSWORD is not set in environment variables');
 }

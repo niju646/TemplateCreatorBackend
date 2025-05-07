@@ -1,0 +1,27 @@
+import pool from '../db.js';
+
+// Simple password hashing for demo purposes (not secure for production)
+const hashPassword = (password) => {
+  // In production, use bcrypt or another secure hashing library
+  return `hashed_${password}`;
+};
+
+export const getUserId = async (username, email = `${username}@example.com`, password = 'defaultpassword') => {
+  try {
+    // Check if user exists
+    const result = await pool.query('SELECT id FROM people WHERE username = $1 OR email = $2', [username, email]);
+    if (result.rows.length > 0) {
+      return result.rows[0].id;
+    }
+
+    // Create a new user if none exists
+    const insertResult = await pool.query(
+      'INSERT INTO people (username, email, password, created_at) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING id',
+      [username, email, hashPassword(password)]
+    );
+    return insertResult.rows[0].id;
+  } catch (err) {
+    console.error('Error in getUserId:', err);
+    throw new Error('Failed to get or create user');
+  }
+};
