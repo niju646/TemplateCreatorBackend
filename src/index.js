@@ -4,7 +4,7 @@ import templateRoutes from './routes/templates.js';
 import dotenv from 'dotenv';
 import customtemplate from './routes/customtemplate.js';
 import notificationRoutes from './routes/notifications.js'
-import userRoutes from './routes/people.js';
+import userRoutes from './routes/userRoutes.js';
 
 
 dotenv.config();

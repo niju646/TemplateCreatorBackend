@@ -209,8 +209,6 @@ export const deleteCustomTemplate = async (req, res) => {
     console.error('Error deleting custom template:', err); // MODIFIED: More specific log
     res.status(500).json({ error: 'Server error' });
   }
-
-
-
   
 };
+
