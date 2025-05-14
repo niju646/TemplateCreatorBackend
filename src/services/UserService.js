@@ -27,6 +27,13 @@ export const getUserId = async (username, email = `${username}@example.com`, pas
 
 };
 
+export const getStaticUserDetails = () => {
+  return {
+    email: 'nijusajeevnj@gmail.com',
+    phone: '+1234567890',
+  };
+};
+
 //8-5-25
 // export const getUserDetails = async (userId) => {
 //   try {
@@ -44,13 +51,8 @@ export const getUserId = async (username, email = `${username}@example.com`, pas
 //   }
 // };
 
-// New function to return static user details for production
-export const getStaticUserDetails = () => {
-  return {
-    email: 'admin123@gmail.com',
-    phone: '+1234567890',
-  };
-};
+
+
 
 
 
