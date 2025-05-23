@@ -2,6 +2,7 @@
 //emailService.js
 import SibApiV3Sdk from 'sib-api-v3-sdk';
 import 'dotenv/config';
+import { getUserId } from './UserService.js';
 
 // Initialize Sendinblue client
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -33,3 +34,22 @@ export const checkAndSendEmails = async (email, message) => {
     throw new Error(`Failed to send email: ${error.message}`);
   }
 };
+
+
+//email setting table
+
+export const insertEmailSettings = async (username, fromName, replyToEmail) => {
+  try {
+    const userId = await getUserId(username);
+
+    await pool.query(
+      'INSERT INTO email_settings (user_id, from_name, reply_to_email) VALUES ($1, $2, $3)',
+      [userId, fromName, replyToEmail]
+    );
+
+    console.log('Email settings saved successfully');
+  } catch (err) {
+    console.error('Error inserting email settings:', err);
+    throw new Error('Failed to insert email settings');
+  }
+}

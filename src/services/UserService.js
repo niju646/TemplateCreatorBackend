@@ -1,8 +1,6 @@
 import pool from '../db.js';
 
-// Simple password hashing for demo purposes (not secure for production)
 const hashPassword = (password) => {
-  // In production, use bcrypt or another secure hashing library
   return `hashed_${password}`;
 };
 
@@ -29,10 +27,17 @@ export const getUserId = async (username, email = `${username}@example.com`, pas
 
 export const getStaticUserDetails = () => {
   return {
+
     email: 'nijusajeevnj@gmail.com',
     phone: '+1234567890',
   };
 };
+
+// export const getUseridDemo = () => {
+//   return {
+//     userid:1
+//   }
+// }
 
 //8-5-25
 // export const getUserDetails = async (userId) => {

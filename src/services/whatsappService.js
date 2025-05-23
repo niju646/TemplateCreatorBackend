@@ -13,7 +13,7 @@ export const sendScheduledWhatsApp = async (phone, message) => {
       to: `whatsapp:${phone}`,
       body: message,
     });
-    console.log(`✅ WhatsApp message sent to ${phone} with SID: ${response.sid}`);
+    console.log(` WhatsApp message sent to ${phone} with SID: ${response.sid}`);
     return { success: true, sid: response.sid };
   } catch (error) {
     console.error(` Error sending WhatsApp message to ${phone}:`, error);
